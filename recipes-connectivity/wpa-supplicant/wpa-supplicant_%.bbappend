@@ -9,10 +9,12 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://wpa_supplicant-wlan0.conf.j2"
 
+UNPACKDIR = "${WORKDIR}/sources-unpack"
+
 inherit templating
 require create_wpa_psk.inc
 
-TEMPLATE_FILE = "${WORKDIR}/wpa_supplicant-wlan0.conf.j2"
+TEMPLATE_FILE = "${UNPACKDIR}/wpa_supplicant-wlan0.conf.j2"
 
 python do_patch:append() {
     ssid = d.getVar('WIFI_SSID', True)

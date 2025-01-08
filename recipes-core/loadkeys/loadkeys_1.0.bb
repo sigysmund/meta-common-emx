@@ -23,7 +23,9 @@ SYSTEMD_SERVICE:${PN} += "loadkeys.service"
 
 inherit templating
 
-TEMPLATE_FILE = "${WORKDIR}/loadkeys.service.j2"
+UNPACKDIR = "${WORKDIR}/sources-unpack"
+
+TEMPLATE_FILE = "${UNPACKDIR}/loadkeys.service.j2"
 
 python do_patch:append() {
     profile = d.getVar('KEYBOARD_PROFILE', True)

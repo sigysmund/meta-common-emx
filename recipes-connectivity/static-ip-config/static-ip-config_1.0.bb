@@ -24,10 +24,12 @@ RDEPENDS:${PN} += "systemd"
 
 inherit templating
 
+UNPACKDIR = "${WORKDIR}/sources-unpack"
+
 TEMPLATE_FILES = "\
-    ${WORKDIR}/en.network.j2 \
-    ${WORKDIR}/eth.network.j2 \
-    ${WORKDIR}/wlan.network.j2 \
+    ${UNPACKDIR}/en.network.j2 \
+    ${UNPACKDIR}/eth.network.j2 \
+    ${UNPACKDIR}/wlan.network.j2 \
 "
 
 python do_patch() {
