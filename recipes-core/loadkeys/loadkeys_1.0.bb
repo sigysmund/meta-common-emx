@@ -40,7 +40,7 @@ python do_patch:append() {
 
 do_install () {
     install -d ${D}${sysconfdir}/systemd/system
-    install -D -m 0644 ${WORKDIR}/loadkeys.service ${D}${sysconfdir}/systemd/system/
+    install -D -m 0644 ${UNPACKDIR}/loadkeys.service ${D}${sysconfdir}/systemd/system/
 
     install -d ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
     ln -s ${systemd_unitdir}/system/loadkeys.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/loadkeys.service
