@@ -11,5 +11,5 @@ inherit extrausers
 
 # Note: The single quotes are necessary to avoid further variable expansion
 EXTRA_USERS_PARAMS += "\
-    usermod -p '$(openssl passwd -6 ${ROOT_PWD})' -d /root -m -s /bin/bash root; \
+    usermod -p '$(openssl passwd -6 ${ROOT_PWD})' -d ${ROOT_HOME} -m -s /bin/bash root; \
 "
