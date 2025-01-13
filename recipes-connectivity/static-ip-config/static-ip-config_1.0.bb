@@ -24,12 +24,12 @@ RDEPENDS:${PN} += "systemd"
 
 inherit templating
 
-UNPACKDIR = "${WORKDIR}/sources-unpack"
+S = "${WORKDIR}/sources-unpack"
 
 TEMPLATE_FILES = "\
-    ${UNPACKDIR}/en.network.j2 \
-    ${UNPACKDIR}/eth.network.j2 \
-    ${UNPACKDIR}/wlan.network.j2 \
+    ${S}/en.network.j2 \
+    ${S}/eth.network.j2 \
+    ${S}/wlan.network.j2 \
 "
 
 python do_patch() {
@@ -47,7 +47,7 @@ python do_patch() {
 
 do_install() {
     install -d ${D}${sysconfdir}/systemd/network
-    install -m 0644 ${UNPACKDIR}/eth.network ${D}${sysconfdir}/systemd/network
-    install -m 0644 ${UNPACKDIR}/en.network ${D}${sysconfdir}/systemd/network
-    install -m 0644 ${UNPACKDIR}/wlan.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${S}/eth.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${S}/en.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${S}/wlan.network ${D}${sysconfdir}/systemd/network
 }

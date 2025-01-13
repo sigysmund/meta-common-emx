@@ -25,7 +25,7 @@ FILES:${PN} += " \
     ${systemd_unitdir}/system/* \
 "
 
-UNPACKDIR = "${WORKDIR}/sources-unpack"
+S = "${WORKDIR}/sources-unpack"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} += "media-automount@.service"
@@ -35,7 +35,7 @@ do_install () {
     install -d ${D}${systemd_unitdir}/system
     install -d ${D}${sysconfdir}/udev/rules.d
 
-    install -m 0775 ${UNPACKDIR}/sbin/mount-media-device.sh ${D}${sbindir}/mount-media-device
-    install -m 0644 ${UNPACKDIR}/systemd/media-automount@.service ${D}${systemd_unitdir}/system/
-    install -m 0644 ${UNPACKDIR}/udev/99-media-automount.rules ${D}${sysconfdir}/udev/rules.d/
+    install -m 0775 ${S}/sbin/mount-media-device.sh ${D}${sbindir}/mount-media-device
+    install -m 0644 ${S}/systemd/media-automount@.service ${D}${systemd_unitdir}/system/
+    install -m 0644 ${S}/udev/99-media-automount.rules ${D}${sysconfdir}/udev/rules.d/
 }

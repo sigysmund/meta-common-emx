@@ -9,12 +9,12 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://wpa_supplicant-wlan0.conf.j2"
 
-UNPACKDIR = "${WORKDIR}/sources-unpack"
+S = "${WORKDIR}/sources-unpack"
 
 inherit templating
 require create_wpa_psk.inc
 
-TEMPLATE_FILE = "${UNPACKDIR}/wpa_supplicant-wlan0.conf.j2"
+TEMPLATE_FILE = "${S}/wpa_supplicant-wlan0.conf.j2"
 
 python do_patch:append() {
     ssid = d.getVar('WIFI_SSID', True)
@@ -32,5 +32,5 @@ SYSTEMD_AUTO_ENABLE = "enable"
 
 do_install:append () {
     install -d ${D}${sysconfdir}/wpa_supplicant/
-    install -D -m 600 ${UNPACKDIR}/wpa_supplicant-wlan0.conf ${D}${sysconfdir}/wpa_supplicant/wpa_supplicant-wlan0.conf
+    install -D -m 600 ${S}/wpa_supplicant-wlan0.conf ${D}${sysconfdir}/wpa_supplicant/wpa_supplicant-wlan0.conf
 }

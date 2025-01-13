@@ -23,9 +23,9 @@ SYSTEMD_SERVICE:${PN} += "loadkeys.service"
 
 inherit templating
 
-UNPACKDIR = "${WORKDIR}/sources-unpack"
+S = "${WORKDIR}/sources-unpack"
 
-TEMPLATE_FILE = "${UNPACKDIR}/loadkeys.service.j2"
+TEMPLATE_FILE = "${S}/loadkeys.service.j2"
 
 python do_patch:append() {
     profile = d.getVar('KEYBOARD_PROFILE', True)
@@ -40,7 +40,7 @@ python do_patch:append() {
 
 do_install () {
     install -d ${D}${sysconfdir}/systemd/system
-    install -D -m 0644 ${UNPACKDIR}/loadkeys.service ${D}${sysconfdir}/systemd/system/
+    install -D -m 0644 ${S}/loadkeys.service ${D}${sysconfdir}/systemd/system/
 
     install -d ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
     ln -s ${systemd_unitdir}/system/loadkeys.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/loadkeys.service

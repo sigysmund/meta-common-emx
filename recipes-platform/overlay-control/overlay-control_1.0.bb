@@ -11,9 +11,11 @@ SRC_URI += " \
     file://usr/bin/overlay-control.sh \
 "
 
+S = "${WORKDIR}/sources-unpack"
+
 RDEPENDS:${PN} = "bash"
 
 do_install () {
     install -d ${D}${bindir}
-    install -m 0775 ${WORKDIR}/usr/bin/overlay-control.sh ${D}${bindir}/overlay-control
+    install -m 0775 ${S}/usr/bin/overlay-control.sh ${D}${bindir}/overlay-control
 }
